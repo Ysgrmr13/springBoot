@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+</head>
+<body>
+<h2>Users</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">ID</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.email}">Email</td>
+        <td>
+            <a th:href="@{/deleteUser(id=${user.id})}">Delete</a>
+            <a th:href="@{/updateUser(id=${user.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+<h3>Add User</h3>
+<form action="#" th:action="@{/addUser}" method="post">
+    Name: <input type="text" name="name"/><br/>
+    Email: <input type="text" name="email"/><br/>
+    <input type="submit" value="Add User"/>
+</form>
+</body>
+</html>
